@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Graph Visualizer</title>
+    <link href="https://unpkg.com/vis-network/styles/vis-network.min.css" rel="stylesheet" type="text/css" />
+    <link href="style.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="/eel.js"></script>
+</head>
+<body>
+
+    <div class="container">
+        <div class="graph-container" tabindex="-1">
+            <div id="mynetwork"></div>
+            <div id="hotkey-reference">
+                <h3>Hotkeys</h3>
+                <ul>
+                    <li><kbd>E</kbd> - Enter CFG (at call nodes)</li>
+                    <li><kbd>R</kbd> - Return to caller</li>
+                    <li><kbd>P</kbd> - Print path condition (on selected edge)</li>
+                </ul>
+                <div class="legend">
+                    <h4>Edge Colors</h4>
+                    <div class="legend-item">
+                        <span class="arrow red">→</span>
+                        <span>Taken conditional jumps</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="sidepanel">
+
+            <h3>Add New Rule</h3>
+            <form id="add-rule-form">
+                <div class="form-group">
+                    <label for="trigger-address">Code Address (Hex) or Symbol Name:</label>
+                    <input type="text" id="trigger-address" name="trigger-address" required placeholder="e.g., 0x401050 or main">
+                </div>
+
+                <div class="form-group">
+                    <label for="taint-type">Taint Type:</label>
+                    <select id="taint-type" name="taint-type">
+                        <option value="register" selected>Register(s)</option>
+                        <option value="memory">Memory (Absolute)</option>
+                        <option value="relative_memory">Memory (Register Relative)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="taint-target">Target:</label>
+                    <input type="text" id="taint-target" name="taint-target" required placeholder="e.g., rax">
+                </div>
+
+                <div class="form-group" id="offset-group" style="display: none;">
+                    <label for="taint-offset">Offset (Hex or Decimal):</label>
+                    <input type="text" id="taint-offset" name="taint-offset" value="0" placeholder="">
+                </div>
+
+                <div class="form-group" id="size-group" style="display: none;">
+                    <label for="taint-size">Size (Hex, Decimal or Reg):</label>
+                    <input type="text" id="taint-size" name="taint-size" placeholder="">
+
+                    <label for="taint-size">Size Multiplier (Hex or Decimal):</label>
+                    <input type="text" id="taint-size-multiplier" name="taint-size-multiplier" placeholder="">
+
+                </div>
+
+                <button type="submit">Add Rule</button>
+            </form>
+            <div id="error-message" class="error-message" style="display: none;"></div>
+            <div id="path-condition-box" class="path-condition-box" style="display: none;">
+                <div class="path-condition-header">
+                    <h3>Path Condition</h3>
+                    <button id="close-path-condition" class="close-button">×</button>
+                </div>
+                <div id="path-condition-content" class="path-condition-content"></div>
+                <button id="copy-path-condition" class="copy-button">Copy to Clipboard</button>
+            </div>
+            <h2>Taint Rules</h2>
+            <div id="rules-list-container">
+                <ul id="rules-list">
+                </ul>
+            </div>      
+            <button id="start-analysis-btn">Run Analysis</button>
+
+        </div>        
+    </div>
+
+
+    <script type="text/javascript" src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
+    <script type="text/javascript" src="main.js"></script>
+</body>
+</html>

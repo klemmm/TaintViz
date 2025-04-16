@@ -1,0 +1,315 @@
+body {
+    font-family: sans-serif;
+    margin: 0px;
+}
+
+#mynetwork {
+    margin-top: 1vh;
+    margin-bottom: 1vh;
+    margin-left: 1vw;
+    margin-right: 1vw;
+    width: 78vw;
+    height: 98vh;
+    border: 0px;
+    background-color: #f9f9f9;
+    outline: none !important;
+}
+
+#mynetwork:focus,
+#mynetwork:focus-within,
+#mynetwork:focus-visible {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.vis-network {
+    outline: none !important;
+}
+
+.vis-network:focus,
+.vis-network:focus-within,
+.vis-network:focus-visible {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.vis-network canvas {
+    outline: none !important;
+}
+
+.vis-network canvas:focus,
+.vis-network canvas:focus-within,
+.vis-network canvas:focus-visible {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.container {
+    display: flex; /* Arrange main content and side panel side-by-side */
+    flex-grow: 1; /* Allow container to fill vertical space */
+    overflow: hidden; /* Prevent container scrollbars */
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+
+
+.sidepanel {
+    width: 20vw; /* Fixed width for the side panel */
+    flex-shrink: 0; /* Prevent panel from shrinking */
+    border-left: 1px solid #ccc;
+    padding-left: 15px;
+    padding-top: 15px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto; /* Allow scrolling if content overflows */
+}
+
+.side-panel h2, .side-panel h3 {
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+#rules-list-container {
+    flex-grow: 1; /* Allow list to take available space */
+    overflow-y: auto; /* Scroll within the list container */
+    border: 1px solid #eee;
+    margin-bottom: 20px; /* Add space between list and Run Analysis button */
+    min-height: 100px; /* Minimum height for the list */
+    padding: 5px;
+}
+
+#rules-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#rules-list li {
+    padding: 5px;
+    border-bottom: 1px dotted #eee;
+    font-size: 0.9em;
+    display: flex; /* Align text and button */
+    justify-content: space-between; /* Push button to the right */
+    align-items: center;
+}
+#rules-list li:last-child {
+    border-bottom: none;
+}
+
+.delete-btn {
+    margin-left: 10px;
+    padding: 2px 5px;
+    font-size: 0.8em;
+    cursor: pointer;
+    background-color: #fdd;
+    border: 1px solid #f99;
+    border-radius: 3px;
+}
+
+#add-rule-form {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px; /* Add space between form and rules list */
+}
+
+#add-rule-form .form-group {
+    margin-bottom: 10px;
+}
+
+#add-rule-form label {
+    display: block;
+    margin-bottom: 3px;
+    font-weight: bold;
+    font-size: 0.9em;
+}
+
+#add-rule-form input[type="text"],
+#add-rule-form select {
+    width: 95%; /* Take most of panel width */
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-sizing: border-box;
+}
+
+#add-rule-form button[type="submit"] {
+    margin-top: 10px;
+    padding: 8px 15px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    margin-right: 15px;
+}
+
+#start-analysis-btn {
+    margin-top: auto; /* Push to bottom */
+    margin-bottom: 15px; /* Add some space at the bottom */
+    padding: 8px 15px;
+    background-color: #2196F3;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    margin-right: 15px;
+}
+
+.error-message {
+    background-color: #ffebee;
+    color: #c62828;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 3px;
+    border: 1px solid #ef9a9a;
+    display: none;
+}
+
+.graph-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    outline: none;
+}
+
+.graph-container:focus {
+    outline: none;
+}
+
+#hotkey-reference {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    font-size: 12px;
+    z-index: 1000;
+}
+
+#hotkey-reference h3 {
+    margin: 0 0 5px 0;
+    font-size: 14px;
+    color: #333;
+}
+
+#hotkey-reference ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+#hotkey-reference li {
+    margin: 3px 0;
+    color: #666;
+}
+
+#hotkey-reference kbd {
+    background-color: #f7f7f7;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-shadow: 0 1px 0 rgba(0,0,0,0.2);
+    color: #333;
+    display: inline-block;
+    font-size: 11px;
+    font-weight: bold;
+    line-height: 1;
+    padding: 2px 4px;
+    white-space: nowrap;
+    margin-right: 5px;
+}
+
+#hotkey-reference .legend {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid #ddd;
+}
+
+#hotkey-reference .legend h4 {
+    margin: 0 0 5px 0;
+    font-size: 12px;
+    color: #333;
+}
+
+#hotkey-reference .legend-item {
+    display: flex;
+    align-items: center;
+    margin: 3px 0;
+    color: #666;
+    font-size: 11px;
+}
+
+#hotkey-reference .arrow {
+    margin-right: 8px;
+    font-weight: 900;
+    font-size: 16px;
+    line-height: 1;
+}
+
+#hotkey-reference .arrow.red {
+    color: #ff0000;
+}
+
+.path-condition-box {
+    background-color: #f8f9fa;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin: 10px 0;
+    margin-right: 15px;
+    overflow: hidden;
+}
+
+.path-condition-header {
+    background-color: #e9ecef;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+}
+
+.path-condition-header h3 {
+    margin: 0;
+    font-size: 14px;
+    color: #333;
+}
+
+.close-button {
+    background: none;
+    border: none;
+    font-size: 20px;
+    color: #666;
+    cursor: pointer;
+    padding: 0 5px;
+}
+
+.close-button:hover {
+    color: #333;
+}
+
+.path-condition-content {
+    padding: 15px;
+    font-family: monospace;
+    white-space: pre-wrap;
+    word-break: break-all;
+    max-height: 200px;
+    overflow-y: auto;
+    background-color: #fff;
+}
+
+.copy-button {
+    width: 100%;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 0 0 3px 3px;
+    cursor: pointer;
+    padding: 8px 15px;
+}
+
+.copy-button:hover {
+    background-color: #0056b3;
+}
